@@ -3,6 +3,11 @@ import time
 import string
 
 
+def ddmmToDecimal(coord):
+    long = int(coord[0][0:3]) + (float(coord[0][3:])/60)
+    lat = int(coord[1][0:2]) + (float(coord[1][2:])/60)
+    return [long, lat]
+
 def getData(type):
     while True:
         port = "/dev/ttyAMA0"
@@ -25,6 +30,7 @@ def setLockCoord():
 
 
 print(setLockCoord())
+print(ddmmToDecimal(setLockCoord()))
 
 
 
