@@ -25,6 +25,9 @@ def avgLocation(size, type):
         data = getData("GPRMC")
         longCoords.append(float(data[5]))
         latCoords.append(float(data[3]))
+        print(longCoords)
+        print(latCoords)
+
 
     avgLongCoord = sum(longCoords)/len(longCoords)
     avgLatCoord = sum(latCoords)/len(latCoords)
