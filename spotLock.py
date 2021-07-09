@@ -17,24 +17,24 @@ def getData(type):
         if ("$"+type) == newdata[0]:
             return newdata
 
+def avgLocation(size, type):
+    longCoords = []
+    latCoords = []
 
+    for i in range(size):
+        data = getData("GPRMC")
+        longCoords.append(float(data[5]))
+        latCoords.append(float(data[3]))
+
+    avgLongCoord = sum(longCoords)/len(longCoords)
+    avgLatCoord = sum(latCoords)/len(latCoords)
 
 def setLockCoord():
-    data = getData("GPRMC")
-
-    lockLong = data[5]
-    lockLat = data[3]
+    return avgLocation(10, "GPRMC")
 
 
-    return [lockLong, lockLat]
-
-
-print(setLockCoord())
-print(ddmmToDecimal(setLockCoord()))
-
-
-
-# lockCoord = []
+lockCoord = setLockCoord()
+print(lockCoord)
 # currentCoord = []
 
 
