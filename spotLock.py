@@ -32,6 +32,8 @@ def avgLocation(size, type):
     avgLongCoord = sum(longCoords)/len(longCoords)
     avgLatCoord = sum(latCoords)/len(latCoords)
 
+    return [avgLongCoord, avgLatCoord]
+
 def setLockCoord():
     return avgLocation(10, "GPRMC")
 
