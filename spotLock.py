@@ -15,15 +15,16 @@ def getData(type):
 
 
 def setLockCoord():
-    print(getData("GPRMC"))
+    data = getData("GPRMC")
 
-    lockLat = 0
-    lockLong = 0
+    lockLong = data[5]
+    lockLat = data[3]
+
 
     return [lockLong, lockLat]
 
 
-setLockCoord()
+print(setLockCoord())
 
 
 
