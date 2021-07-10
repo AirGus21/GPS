@@ -2,6 +2,7 @@
 import time
 import string
 import math
+import tkinter as tk
 
 
 def dist(coord1, coord2):
@@ -58,7 +59,8 @@ def getAngle(currentCoord, lockCoord):
 print(getAngle([-4, -4], [0, 0]))
 
 
-
+window = tk.Tk()
+window.mainloop()
 
 # collectionFreq = 10
 # count = 0
