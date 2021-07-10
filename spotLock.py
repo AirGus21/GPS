@@ -60,8 +60,34 @@ print(getAngle([-4, -4], [0, 0]))
 
 
 window = tk.Tk()
-window.geometry('800x600')
-window['background'] = 'lightblue'
+window.geometry('800x410')
+c = tk.Canvas(window, bg='lightblue', width=800, height=410)
+c.pack()
+r = 30
+cx = 400
+cy = 205
+x1 = cx - r
+x2 = cx + r
+y1 = cy - r
+y2 = cy + r
+c.create_oval(x1, y1, x2, y2, fill='black')
+
+r = 200
+cx = 400
+cy = 205
+x1 = cx - r
+x2 = cx + r
+y1 = cy - r
+y2 = cy + r
+c.create_oval(x1, y1, x2, y2, width = 3)
+
+angle = 45
+
+x = 200 * math.cos(math.radians(angle - 90)) + cx
+y = 200 * math.sin(math.radians(angle - 90)) + cy
+
+c.create_line(cx, cy, x, y, width = 5)
+
 window.mainloop()
 
 # collectionFreq = 10
