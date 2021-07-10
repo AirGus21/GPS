@@ -1,7 +1,7 @@
 import serial
 import time
 import string
-
+import math
 
 def ddmmToDecimal(coord):
     long = int(coord[0][0:3]) + (float(coord[0][3:])/60)
@@ -25,9 +25,6 @@ def avgLocation(size, type):
         data = getData("GPRMC")
         longCoords.append(float(data[5]))
         latCoords.append(float(data[3]))
-        print(longCoords)
-        print(latCoords)
-
 
     avgLongCoord = sum(longCoords)/len(longCoords)
     avgLatCoord = sum(latCoords)/len(latCoords)
@@ -37,10 +34,22 @@ def avgLocation(size, type):
 def setLockCoord():
     return avgLocation(10, "GPRMC")
 
+def getAngle(currentCoord, lockCoord):
 
-lockCoord = setLockCoord()
-print(lockCoord)
-# currentCoord = []
+    if currentCoord[0] > lockCoord[0]:
+        if currentCoord[1] > lockCoord[1]:
+            return 90 + math.degrees(math.acos(math.dist(currentCoord, lockCoord)/(math.abs(currentCoord[0] - lockCoord[0]))))
+        else:
+            return 90 - math.degrees(math.acos(math.dist(currentCoord, lockCoord)/(math.abs(currentCoord[0] - lockCoord[0]))))
+    else:
+        if currentCoord[1] > lockCoord[1]:
+            return 270 - math.degrees(math.acos(math.dist(currentCoord, lockCoord)/(math.abs(currentCoord[0] - lockCoord[0]))))
+        else:
+            return 270 + math.degrees(math.acos(math.dist(currentCoord, lockCoord)/(math.abs(currentCoord[0] - lockCoord[0]))))
+
+print(getAngle([-4, -4], [0, 0]))
+
+
 
 
 # collectionFreq = 10
