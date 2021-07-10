@@ -60,6 +60,8 @@ print(getAngle([-4, -4], [0, 0]))
 
 
 window = tk.Tk()
+window.geometry('800x600')
+window['background'] = 'lightblue'
 window.mainloop()
 
 # collectionFreq = 10
