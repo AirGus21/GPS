@@ -3,6 +3,10 @@ import time
 import string
 import math
 
+
+def dist(coord1, coord2):
+    return math.sqrt((coord1[0] - coord2[0])**2 + (coord1[1] - coord2[1])**2)
+
 def ddmmToDecimal(coord):
     long = int(coord[0][0:3]) + (float(coord[0][3:])/60)
     lat = int(coord[1][0:2]) + (float(coord[1][2:])/60)
@@ -38,17 +42,17 @@ def getAngle(currentCoord, lockCoord):
     if currentCoord[0] < lockCoord[0]:  # Checks long
         if currentCoord[1] > lockCoord[1]:
             print(1)
-            angle = 270 - math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/math.dist(currentCoord, lockCoord))))
+            angle = 270 - math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/dist(currentCoord, lockCoord))))
         else:
             print(2)
-            angle = 270 + math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/math.dist(currentCoord, lockCoord))))
+            angle = 270 + math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/dist(currentCoord, lockCoord))))
     else:
         if currentCoord[1] > lockCoord[1]:
             print(3)
-            angle = 90 + math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/math.dist(currentCoord, lockCoord))))
+            angle = 90 + math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/dist(currentCoord, lockCoord))))
         else:
             print(4)
-            angle = 90 - math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/math.dist(currentCoord, lockCoord))))
+            angle = 90 - math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/dist(currentCoord, lockCoord))))
     return round(angle)
 
 print(getAngle([-4, -4], [0, 0]))
