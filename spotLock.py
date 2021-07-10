@@ -1,4 +1,4 @@
-import serial
+# import serial
 import time
 import string
 import math
@@ -35,17 +35,21 @@ def setLockCoord():
     return avgLocation(10, "GPRMC")
 
 def getAngle(currentCoord, lockCoord):
-
-    if currentCoord[0] > lockCoord[0]:
+    if currentCoord[0] < lockCoord[0]:  # Checks long
         if currentCoord[1] > lockCoord[1]:
-            return 90 + math.degrees(math.acos(math.dist(currentCoord, lockCoord)/(math.abs(currentCoord[0] - lockCoord[0]))))
+            print(1)
+            angle = 270 - math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/math.dist(currentCoord, lockCoord))))
         else:
-            return 90 - math.degrees(math.acos(math.dist(currentCoord, lockCoord)/(math.abs(currentCoord[0] - lockCoord[0]))))
+            print(2)
+            angle = 270 + math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/math.dist(currentCoord, lockCoord))))
     else:
         if currentCoord[1] > lockCoord[1]:
-            return 270 - math.degrees(math.acos(math.dist(currentCoord, lockCoord)/(math.abs(currentCoord[0] - lockCoord[0]))))
+            print(3)
+            angle = 90 + math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/math.dist(currentCoord, lockCoord))))
         else:
-            return 270 + math.degrees(math.acos(math.dist(currentCoord, lockCoord)/(math.abs(currentCoord[0] - lockCoord[0]))))
+            print(4)
+            angle = 90 - math.degrees(math.acos((abs(currentCoord[0] - lockCoord[0])/math.dist(currentCoord, lockCoord))))
+    return round(angle)
 
 print(getAngle([-4, -4], [0, 0]))
 
